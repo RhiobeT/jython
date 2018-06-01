@@ -167,6 +167,9 @@ oracle.jar=C:/workspace/HEAD/for_development/bisdevsrv28/jboss/server/infra/lib/
             <pathelement path="${extlibs.dir}/netty-handler-4.1.24.Final.jar"/>
             <pathelement path="${extlibs.dir}/netty-resolver-4.1.24.Final.jar"/>
             <pathelement path="${extlibs.dir}/netty-transport-4.1.24.Final.jar"/>
+            <pathelement path="${extlibs.dir}/truffle-api-1.0.0-rc1.jar"/>
+            <pathelement path="${extlibs.dir}/truffle-dsl-processor-1.0.0-rc1.jar"/>
+            <pathelement path="${extlibs.dir}/graal-sdk-1.0.0-rc1.jar"/>
         </path>
 
         <available property="informix.present" classname="com.informix.jdbc.IfxDriver" classpath="${informix.jar}" />

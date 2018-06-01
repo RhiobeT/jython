@@ -363,7 +363,7 @@ public class jython {
                             interp.interact(null, new PyFile(file));
                             return;
                         } else {
-                            interp.execfile(file, opts.filename);
+                            interp.execfile(file, opts.filename, opts.truffle);
                         }
                     } finally {
                         file.close();
@@ -528,6 +528,8 @@ class CommandLineOptions {
     /** Eventually go interactive: reflects the -i ("inspect") flag. */
     public boolean fixInteractive = false;
     public boolean help, version;
+    // Used to check if the GraalVM support should be used or not
+    public boolean truffle;
     public String[] argv;
     public Properties properties;
     public String command;
@@ -543,6 +545,7 @@ class CommandLineOptions {
         runModule = false;
         properties = new Properties();
         help = version = false;
+        truffle = false;
     }
 
     public void setProperty(String key, String value) {
@@ -564,7 +567,9 @@ class CommandLineOptions {
 
         while (index < args.length && args[index].startsWith("-")) {
             String arg = args[index];
-            if (arg.equals("-h") || arg.equals("-?") || arg.equals("--help")) {
+            if (arg.equals("--truffle")) {
+                truffle = true;
+            } else if (arg.equals("-h") || arg.equals("-?") || arg.equals("--help")) {
                 help = true;
                 return false;
             } else if (arg.equals("-V") || arg.equals("--version")) {
